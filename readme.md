@@ -32,7 +32,7 @@ The main document view is composed of two parts:
 - Upper side &rarr; graph view : graphical MSC representation
 - Lower side &rarr; editor view : textual source definition of the MSC
 
-Both views are syncrhonized in real-time and modifying the source definition will instantaneously be displayed in the graphical view.
+Both views are syncrhonized in real-time and modifications in the source text will instantaneously be displayed in the graphical view.
 
 Selecting an element in the editor view will select it graphical counterpart in the graph view and vice-versa.
 
