@@ -74,6 +74,7 @@ jobs:
       if: matrix.os == 'ubuntu-latest'
       run: |
         wget -nv -c https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
+        chmod +x ./appimagetool-x86_64.AppImage
         ARCH=x86_64 ./appimagetool-x86_64.AppImage ${{ steps.strings.outputs.install-output-dir }}/AppDir ${{ steps.strings.outputs.install-output-dir }}/${{ matrix.artifact }}
 
     - name: Upload Artifact (Linux)
