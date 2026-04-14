@@ -40,14 +40,8 @@ jobs:
             c_compiler: cl
 
     steps:
-#    - name: Install dependencies (linux)
-#      run: sudo apt install ninja-build
-#      if: matrix.os == 'ubuntu-latest'
-#    - name: Install Ninja (windows)
-#      run: choco install ninja
-#      if: matrix.os == 'windows-latest'
     - name: Install Qt
-      uses: jurplel/install-qt-action@v3
+      uses: jurplel/install-qt-action@v4
       with:
         version: '6.8.3'
 
@@ -59,6 +53,7 @@ jobs:
       shell: bash
       run: |
         echo "build-output-dir=${{ github.workspace }}/build" >> "$GITHUB_OUTPUT"
+        ls -al ${{ github.workspace }}/src/parser/bin
 
     - name: Configure CMake
       # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
@@ -66,9 +61,6 @@ jobs:
       run: >
         cmake -B ${{ steps.strings.outputs.build-output-dir }}
         -G "Ninja Multi-Config"
-        -DCMAKE_CXX_COMPILER=${{ matrix.cpp_compiler }}
-        -DCMAKE_C_COMPILER=${{ matrix.c_compiler }}
-        -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
         -S ${{ github.workspace }}
 
     - name: Build
