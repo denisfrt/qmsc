@@ -24,7 +24,7 @@ jobs:
             qthost: 'windows'
             qtarch: 'win64_mingw'
             cmake_defs: '-DWIN32=ON'
-            artifact: 'qmsc.windows'
+            artifact: 'qmsc.windows.zip'
             appdir: 'qmsc'
           - os: ubuntu-latest
             qthost: 'linux'
@@ -85,10 +85,11 @@ jobs:
       if: matrix.os == 'windows-latest'
       run: |
         cd ${{ steps.strings.outputs.install-output-dir }}
-        zip -r ${{ matrix.artifact }} ${{ steps.strings.outputs.install-app-dir }}
+        7z a -tzip ${{ matrix.artifact }} ${{ steps.strings.outputs.install-app-dir }}
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v7
+      if: github.ref_type != 'tag'
       with:
         path: ${{ steps.strings.outputs.install-output-dir }}/${{ matrix.artifact }}
         archive: false
