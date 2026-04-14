@@ -1,0 +1,45 @@
+msc {
+  name:"condition examples"
+  instance { name:"TASK1" }
+  instance { name:"TASK2" }
+  instance { name:"TASK3" }
+  if ("condition 1") {
+    message { name:"message 1" from:"TASK1" to:"TASK2" }
+    message { name:"message 1" from:"TASK2" to:"TASK1" }
+  } elif ("condition 2") {
+    message { name:"message 2" from:"TASK1" to:"TASK2" }
+  } elif ("condition 3") {
+    text { name:"message 3" from:"TASK1" to:"TASK3" }
+  } else {
+    text { name:"message 4" from:"TASK2" to:"TASK2" }
+  }
+  if ("condition 4") {
+    message { name:"message 5" from:"TASK1" to:"TASK2" }
+  }
+  if ("condition 5") {
+    message { name:"message 6" from:"TASK2" to:"TASK3" }
+  }
+  if ("condition 6") {
+    message { name:"message 7" from:"TASK1" to:"TASK3" }
+  }
+  if ("condition 7") {
+    text { name:"message 8" from:"TASK2" to:"TASK2" }
+    if ("condition 8") {
+      text { name:"message 9" from:"TASK3" to:"TASK3" }
+    }
+  }
+  if ("condition 9") {
+    if ("condition 10") {
+      message { name:"message 10" from:"TASK1" to:"TASK3" }
+    } elif ("condition 10") {
+      message { name:"message 11" from:"TASK1" to:"TASK3" }
+      if ("condition 11") {
+        text { name:"message 12" }
+      }
+    }
+    message { name:"message 13" from:"TASK1" to:"TASK2" }
+    while ("condition 12") {
+      message { name:"message 14" from:"TASK2" to:"TASK3" }
+    }
+  }
+}

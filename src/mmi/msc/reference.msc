@@ -1,0 +1,55 @@
+msc {
+  name:"Reference usage examples"
+  instance { name:"TASK1" }
+  instance { name:"TASK2" }
+  instance { name:"TASK3" }
+
+  message { name:"message 1" from:"TASK2" to:"TASK3" }
+  text { name:"message 2" from:"TASK2" to:"TASK3" }
+  message { name:"message 3" from:"TASK1" to:"TASK2" }
+  text { name:"message 4" from:"TASK1" to:"TASK2" }
+  message { name:"message 5" from:"TASK1" to:"TASK3" }
+  text { name:"message 5" from:"TASK1" to:"TASK3" }
+
+  reference { name:"msc 1" }
+  reference { name:"msc 2" }
+  reference { name:"msc 3" }
+  reference { name:"msc 4" xform:"expanded"}
+  reference { name:"msc 5" }
+  reference { name:"msc 6" }
+}
+
+msc {
+  name:"msc 1"
+  message { name:"message 1" from:"TASK2" to:"TASK3" }
+  text { name:"message 2" from:"TASK2" to:"TASK3" }
+}
+
+msc {
+  name:"msc 2"
+  message { name:"message 3" from:"TASK1" to:"TASK2" }
+  text { name:"message 4" from:"TASK1" to:"TASK2" }
+}
+
+msc {
+  name:"msc 3"
+  message { name:"message 5" from:"TASK1" to:"TASK3" }
+  text { name:"message 5" from:"TASK1" to:"TASK3" }
+}
+
+msc {
+  name:"msc 4"
+  reference { name:"msc 1" xform:"inline" }
+  reference { name:"msc 2" }
+}
+
+msc {
+  name:"msc 5"
+  message { name:"message 1" from:"TASK3" to:"TASK2" }
+  text { name:"message 2" from:"TASK3" to:"TASK2" }
+}
+
+msc {
+  name:"msc 6"
+  message { name:"message 1" from:"TASK1" to:"TASK1" }
+}

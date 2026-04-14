@@ -1,0 +1,23 @@
+msc {
+  name:"Annotation usage examples"
+  instance { name:"TASK1" }
+  instance { name:"TASK2" }
+  instance { name:"TASK3" }
+  text { name:"message 1" from:"TASK2" to:"TASK2" }
+  message { name:"message 2\n" subtext:"subtext\nline2"from:"TASK1" to:"TASK3" }
+  text { name:"message 1" from:"TASK2" to:"TASK2" anno:"annotation 1" anno:"annotation 2\nline 1\nline2\nline3" }
+  message { name:"message 2" from:"TASK1" to:"TASK3" anno:"annotation 3\nline 1\nline2\nline3" anno:"annotation 4" }
+  if ("condition 1") {
+    text { name:"message 1" from:"TASK2" to:"TASK2" anno:"annotation 1" anno:"annotation 2\nline 1\nline2\nline3" }
+  }
+  if ("condition 1") {
+    text { name:"message 3" from:"TASK2" to:"TASK2" anno:"annotation 5" anno:"annotation 6" }
+    message { name:"message 4" from:"TASK1" to:"TASK3" anno:"annotation 7" anno:"annotation 8" }
+  } elif ("condition 2") {  if ("condition 2") { if ("condition 2") { if ("condition 2") {
+    text { name:"message 3" from:"TASK2" to:"TASK2" anno:"annotation 9" anno:"annotation 10" }
+    if ("condition 2") {
+      text { name:"message 3" from:"TASK2" to:"TASK2" anno:"annotation 9" anno:"annotation 10" }
+    }
+    message { name:"message 4" from:"TASK1" to:"TASK3" anno:"annotation 11" anno:"annotation 12" }
+  } } } }
+}

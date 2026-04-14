@@ -1,0 +1,30 @@
+msc {
+    name:"Flowchart Example"
+    xform:"font=Courier New" // default font
+    xform:"szfont+=0"       // Font size
+    xform:"xinst=200"       // Width between instances
+    xform:"yitem+=0"        // Offset between elements
+
+  instance { name:"TASK1" }
+  instance { name:"TASK2" }
+  instance { name:"TASK3" }
+
+  reference { name:"Reference Examples" xform:"expanded" }
+}
+
+msc {
+  name:"flowchart2"
+
+  instance { name:"TASK1" }
+  instance { name:"TASK2" }
+  instance { name:"TASK3" }
+
+}
+
+msc {
+  name:"Reference Examples"
+
+  message { from:"TASK3" to:"TASK2" name:"msg 2" subtext:"subtext 3" }
+  message { from:"TASK2" to:"TASK1" name:"msg 3" subtext:"subtext 4" }
+
+}

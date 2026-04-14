@@ -1,0 +1,85 @@
+msc {
+    name:"Message Sequence Chart Example"
+    xform:"font=Sans Serif" // default font
+    xform:"szfont+=0"       // Font size
+    xform:"xinst=200"       // Width between instances
+    xform:"yitem+=0"        // Offset between elements
+
+  instance { name:"TASK1\n\b(Bold)" }
+  instance { name:"\ct blue TASK2\n\ct red FIFO" xform:"shape=FIFO" }
+  instance { name:"\cbffff TASK3\n\u\ct red Underlined red\n\i\bItalic bold" }
+
+  reference { name:"Text Examples" xform:"expanded" }
+  reference { name:"Message Examples" xform:"expanded" }
+  reference { name:"Condition Examples" xform:"expanded" }
+  reference { name:"\cb red \b Reference Examples" xform:"expanded" }
+}
+
+msc {
+  name:"flowchart2"
+
+  message { from:"TASK3" to:"TASK2" name:"msg 2" subtext:"subtext 3" }
+  message { from:"TASK2" to:"TASK1" name:"msg 3" subtext:"subtext 4" }
+}
+
+msc {
+  name:"Text Examples"
+
+  text { name:"Text expanding across all instances" }
+  text { name:"Text expanding\nacross\nmultiple lines (centered)" }
+  text { name:"\l Text expanding\n\l across\n\l multiple lines (left aligned)" }
+  text { name:"\r Text expanding\n\r across\n\r multiple lines (right aligned)" anno:"Text\nAnnotation" anno:"Text\nAnnotation"}
+  text { name:"Text from TASK1 to TASK3" from:"TASK2" to:"TASK3" }
+  text { name:"Text from TASK2 to TASK2" from:"TASK2" to:"TASK2" }
+  text { name:"\ctff0fff Text with\n\ctff0ff colors\n\b Bold Text\n\uUnderlined text\n\iItalic text" from:"TASK1" to:"TASK2" }
+  text { name:"Round Text 1"  from:"TASK2" to:"TASK3"  xform:"shape=round" }
+  text { name:"Round Text 2" from:"TASK2" to:"TASK2" xform:"shape=round" }
+  text { name:"\cbff0fff Text with custom background color" from:"TASK1" to:"TASK3" }
+}
+
+msc {
+  name:"Message Examples"
+
+  message { name:"Message 6" from:"TASK1" to:"TASK3" }
+  message { name:"Message 2\nfrom TASK1 to TASK1" subtext:"Subtext of Message 2" from:"TASK1" to:"TASK1" }
+  message { name:"Message 8" from:"TASK1" to:"TASK3" subtext:"Subtext of Message" xform:"arrow=dash" }
+  message { name:"Message 3" from:"TASK3" to:"TASK2" anno:"Message Annotation\n(Default first right)" anno:"Message Annotation\n(Default second left)" }
+  message { name:"Message 4" from:"TASK3" to:"TASK2" anno:"left=Message Annotation\n(explicit left)" anno:"right=Message Annotation\n(explicit right)" }
+  message { name:"Message 5" from:"TASK3" to:"TASK2" anno:"to=Message Annotation\n(explicit to)" anno:"from=Message Annotation\n(explicit from)" }
+  message { name:"\ctff0fff Message with\n\ctff0ff colors" subtext:"\iItalic text\n\uUnderlined text\n\b Bold Text"
+            from:"TASK2" to:"TASK3" anno:"to=Message Annotation\n(explicit to)" anno:"from=Message Annotation\n(explicit from)" }
+}
+
+msc {
+  name:"Condition Examples"
+
+  IF ("\b\ctff Condition 1") {
+    message { name:"Message" from:"TASK1" to:"TASK3" }
+    IF ("\cbf0ff0f \b\ctff0ff0 SubCondition 1") {
+      message { name:"Message" from:"TASK2" to:"TASK1" anno:"to=Annotation" }
+    }
+
+    IF ("\b\ct00ff00 SubCondition 2") {
+      message { name:"Message" from:"TASK2" to:"TASK3" anno:"\cb00ff00 \ctff00ff Colored\n\ctffff00 Annotation" }
+    }
+  }
+  IF ("\b\ct0000ff Alternative 1") {
+    message { name:"Message" from:"TASK3" to:"TASK2" anno:"to=Annotation" }
+  }
+  ELIF ("\b\ct0000ff Alternative 2") {
+    message { name:"Message" from:"TASK2" to:"TASK3" anno:"Annotation" }
+  } ELSE {
+    message { name:"Default" from:"TASK3" to:"TASK3" }
+  }
+  WHILE ("\b\ctff0000 !EndLoop") {
+    text { name:"\u Do the loop" }
+  }
+}
+
+msc {
+  name:"Reference Examples"
+
+  reference { name:"flowchart2" xform:"expanded" }
+  reference { name:"\cb green \ct black \u\i flowchart2" }
+  reference { name:"flowchart2" xform:"inline" }
+}

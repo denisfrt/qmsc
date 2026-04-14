@@ -1,0 +1,14 @@
+msc {
+  instance { name:"TASK1" }
+  instance { name:"TASK2" }
+  instance { name:"TASK3" xform:"shape=fifo"}
+
+  if ("condition") {
+    message { name:"request" subtext:"subtext"
+              from:"TASK1" to:"TASK3" }
+  }
+  while ("loop") {
+    message { name:"response" from:"TASK2" to:"TASK1" }
+    text { name:"State Reached" from:"TASK2" to:"TASK2" }
+  }
+}
