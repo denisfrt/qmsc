@@ -33,7 +33,7 @@ jobs:
           - os: ubuntu-latest
             qtarch: 'win64_mingw'
             cmake_defs: ''
-            artifact: '/qmsc.AppImage'
+            artifact: 'qmsc.AppImage'
 
     steps:
     - name: Install Qt
@@ -42,7 +42,7 @@ jobs:
         version: '6.10.1'
         host: 'linux'
         target: 'desktop'
-        arch: ${{ matrix.qtarch }}
+        arch: '${{ matrix.qtarch }}'
 
     - name: Checkout
       uses: actions/checkout@v6
