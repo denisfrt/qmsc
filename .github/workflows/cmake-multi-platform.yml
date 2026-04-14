@@ -30,7 +30,7 @@ jobs:
             qthost: 'linux'
             qtarch: 'linux_gcc_64'
             cmake_defs: ''
-            artifact: 'qmsc.AppImage'
+            artifact: 'qmsc.linux.AppImage'
             appdir: 'AppDir'
 
     steps:
