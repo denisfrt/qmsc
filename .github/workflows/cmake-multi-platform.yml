@@ -82,11 +82,19 @@ jobs:
         -S ${{ github.workspace }}
         ${{ matrix.cmake_defs }}
 
-    - name: Build/Install
+    - name: Build
+      run: >
+        cmake --build ${{ steps.strings.outputs.build-output-dir }}
+        --config ${{ matrix.build_type }}
+
+    - name: Install
+      run: >
+        cmake --install ${{ steps.strings.outputs.build-output-dir }}
+        --config ${{ matrix.build_type }}
+        --prefix ${{ steps.strings.outputs.install-output-dir }}
+
+    - name: Package (Linux)
+      if: matrix.os == 'ubuntu-latest'
       run: |
-        cmake --build ${{ steps.strings.outputs.build-output-dir }} \
-              --config ${{ matrix.build_type }}
-        cmake --install ${{ steps.strings.outputs.build-output-dir }} \
-              --config ${{ matrix.build_type }} \
-              --prefix ${{ steps.strings.outputs.install-output-dir }}
-      
+        wget -nv -c https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
+        ARCH=x86_64 ./appimagetool-x86_64.appimage ${{ steps.strings.outputs.install-output-dir }}/AppDir ${{ steps.strings.outputs.install-output-dir }}/qmsc.AppImage
