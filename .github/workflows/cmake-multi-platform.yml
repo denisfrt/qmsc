@@ -25,21 +25,13 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest]
         build_type: [Release]
-        c_compiler: [gcc, cl]
         include:
           - os: windows-latest
-            c_compiler: cl
-            cpp_compiler: cl
             cmake_defs: '-DWIN32=ON'
+            artifact: 'qmsc_window.tar.gz'
           - os: ubuntu-latest
-            c_compiler: gcc
-            cpp_compiler: g++
             cmake_defs: ''
-        exclude:
-          - os: windows-latest
-            c_compiler: gcc
-          - os: ubuntu-latest
-            c_compiler: cl
+            artifact: '/qmsc.AppImage'
 
     steps:
     - name: Install Qt (Linux)
@@ -58,7 +50,7 @@ jobs:
         version: '6.10.1'
         host: 'windows'
         target: 'desktop'
-        arch: 'win64_msvc2022_64'
+        arch: 'win64_mingw'
 
     - name: Checkout
       uses: actions/checkout@v6
@@ -97,4 +89,18 @@ jobs:
       if: matrix.os == 'ubuntu-latest'
       run: |
         wget -nv -c https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
-        ARCH=x86_64 ./appimagetool-x86_64.appimage ${{ steps.strings.outputs.install-output-dir }}/AppDir ${{ steps.strings.outputs.install-output-dir }}/qmsc.AppImage
+        ARCH=x86_64 ./appimagetool-x86_64.Appimage ${{ steps.strings.outputs.install-output-dir }}/AppDir ${{ steps.strings.outputs.install-output-dir }}/qmsc.AppImage
+
+    - name: Upload Artifact (Linux)
+      if: matrix.os == 'ubuntu-latest'
+      uses: actions/upload-artifact@v7
+      with:
+        path: ${{ steps.strings.outputs.install-output-dir }}/${{ matrix.artifact }}
+        archive: false
+
+    - name: Upload Artifact (Windows)
+      if: matrix.os == 'windows-latest'
+      uses: actions/upload-artifact@v7
+      with:
+        name: ${{ matrix.artifact }}
+        path: ${{ steps.strings.outputs.install-output-dir }}/AppDir
