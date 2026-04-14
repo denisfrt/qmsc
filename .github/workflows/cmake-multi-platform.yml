@@ -30,9 +30,11 @@ jobs:
           - os: windows-latest
             c_compiler: cl
             cpp_compiler: cl
+            cmake_defs: '-DWIN32=ON'
           - os: ubuntu-latest
             c_compiler: gcc
             cpp_compiler: g++
+            cmake_defs: ''
         exclude:
           - os: windows-latest
             c_compiler: gcc
@@ -61,11 +63,14 @@ jobs:
       # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
       # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
       run: >
-        cmake -B ${{ steps.strings.outputs.build-output-dir }}
-        -G "Ninja Multi-Config"
+        cmake -Wno-dev -G "Ninja Multi-Config"
+        -B ${{ steps.strings.outputs.build-output-dir }}
         -S ${{ github.workspace }}
+        ${{ matrix.cmake_defs }}
 
     - name: Build
       # Build your program with the given configuration. Note that --config is needed because the default Windows generator is a multi-config generator (Visual Studio generator).
-      run: cmake --build ${{ steps.strings.outputs.build-output-dir }} --config ${{ matrix.build_type }}
-      
+      run: >
+        cmake --build ${{ steps.strings.outputs.build-output-dir }}
+              --config ${{ matrix.build_type }}
+
