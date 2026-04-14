@@ -65,6 +65,8 @@ jobs:
       run: >
         cmake -Wno-dev -G "Ninja Multi-Config"
         -B ${{ steps.strings.outputs.build-output-dir }}
+        -DCMAKE_CXX_COMPILER=${{ matrix.cpp_compiler }}
+        -DCMAKE_C_COMPILER=${{ matrix.c_compiler }}
         -S ${{ github.workspace }}
         ${{ matrix.cmake_defs }}
 
