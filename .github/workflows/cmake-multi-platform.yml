@@ -83,10 +83,10 @@ jobs:
         ${{ matrix.cmake_defs }}
 
     - name: Build/Install
-      run: >
-        - cmake --build ${{ steps.strings.outputs.build-output-dir }}
-          --config ${{ matrix.build_type }}
-        - cmake --install ${{ steps.strings.outputs.build-output-dir }}
-          --config ${{ matrix.build_type }}
-          --prefix ${{ steps.strings.outputs.install-output-dir }}
+      run: |
+        cmake --build ${{ steps.strings.outputs.build-output-dir }} \
+              --config ${{ matrix.build_type }}
+        cmake --install ${{ steps.strings.outputs.build-output-dir }} \
+              --config ${{ matrix.build_type }} \
+              --prefix ${{ steps.strings.outputs.install-output-dir }}
       
