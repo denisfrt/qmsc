@@ -2,7 +2,7 @@
 #include <QLocale>
 #include <QObject>
 #include <QTranslator>
-#ifndef WIN32
+#if !defined(WIN32) && !defined(NDEBUG)
 #include <valgrind/valgrind.h>
 #else
 #define RUNNING_ON_VALGRIND 0
