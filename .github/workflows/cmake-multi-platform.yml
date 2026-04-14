@@ -24,7 +24,7 @@ jobs:
             qthost: 'windows'
             qtarch: 'win64_mingw'
             cmake_defs: '-DWIN32=ON'
-            artifact: 'qmsc_windows'
+            artifact: 'qmsc.windows'
           - os: ubuntu-latest
             qthost: 'linux'
             qtarch: 'linux_gcc_64'
@@ -73,6 +73,7 @@ jobs:
     - name: Package (Linux)
       if: matrix.os == 'ubuntu-latest'
       run: |
+        sudo apt install libfuse2
         wget -nv -c https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
         chmod +x ./appimagetool-x86_64.AppImage
         ARCH=x86_64 ./appimagetool-x86_64.AppImage ${{ steps.strings.outputs.install-output-dir }}/AppDir ${{ steps.strings.outputs.install-output-dir }}/${{ matrix.artifact }}
