@@ -26,7 +26,7 @@ qt_standard_project_setup()
 add_subdirectory(parser)
 add_subdirectory(mmi)
 
-qt_add_executable(qmsc
+qt_add_executable(qmsc WIN32
     main.cpp
 )
 

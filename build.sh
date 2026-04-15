@@ -43,9 +43,9 @@ if $CMD_INSTALL; then
   rm -rf ${DIR_INSTALL}
   cmake --install ${DIR_BUILD} --config ${CMD_BUILD} --prefix $PWD/${DIR_INSTALL}/AppDir
   if [ -z "$CMD_WIN" ]; then
-    ARCH=x86_64 appimagetool-x86_64.appimage ${DIR_INSTALL}/AppDir ${DIR_INSTALL}/qmsc.AppImage
+    ARCH=x86_64 appimagetool-x86_64.appimage ${DIR_INSTALL}/AppDir ${DIR_INSTALL}/qmsc.linux.AppImage
   else
-    cd ${DIR_INSTALL} && tar cvzf qmsc_win.tgz AppDir
+    cd ${DIR_INSTALL} && tar cvzf qmsc.windows.tgz AppDir
   fi
 fi
 

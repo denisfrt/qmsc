@@ -4,6 +4,7 @@
 #include <QLabel>
 #include <QMdiSubWindow>
 #include <QTextEdit>
+#include "qmsc_about_dialog.h"
 #include "qmsc_child.h"
 #include "qmsc_config_dialog.h"
 #include "qmsc_settings.h"
@@ -215,7 +216,11 @@ void MscMainWindow::onSettings()
     dialog->open();
 }
 
-void MscMainWindow::onAbout() {}
+void MscMainWindow::onAbout()
+{
+    auto *dialog = new MscAboutDialog(this);
+    dialog->open();
+}
 
 void MscMainWindow::updateMenus(QMdiSubWindow *child)
 {

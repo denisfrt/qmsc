@@ -22,12 +22,16 @@ add_library(qmsc_mmi STATIC
     qmsc_config_dialog.h
     qmsc_config_dialog.cpp
     qmsc_config_dialog.ui
+    qmsc_about_dialog.h
+    qmsc_about_dialog.cpp
+    qmsc_about_dialog.ui
 )
 
 qt_add_resources(qmsc_mmi "images" PREFIX "/"
     FILES
     images/document.png
     images/app.png
+    images/logo.png
 )
 
 qt_add_resources(qmsc_mmi "msc" PREFIX "/"
