@@ -36,9 +36,15 @@ qt_add_translations(qmsc qmsc_mmi qmsc_parser
       i18n/qmsc_en_US.ts
 )
 
-target_link_libraries(qmsc PRIVATE
-    qmsc_mmi
-    qmsc_parser
+target_link_libraries(qmsc
+    PRIVATE
+        common_flags
+        qmsc_mmi
+        qmsc_parser
+    PUBLIC
+        Qt6::Core
+        Qt6::Widgets
+        Qt6::Gui
 )
 
 install(TARGETS qmsc
