@@ -2,6 +2,14 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="en_US" sourcelanguage="en_US">
 <context>
+    <name>QMscAboutDialog</name>
+    <message>
+        <location filename="../mmi/qmsc_about_dialog.ui" line="20"/>
+        <source>About</source>
+        <translation></translation>
+    </message>
+</context>
+<context>
     <name>QMscConfigDialog</name>
     <message>
         <location filename="../mmi/qmsc_config_dialog.ui" line="14"/>
@@ -203,6 +211,14 @@
     </message>
 </context>
 <context>
+    <name>qmsc::MscAboutDialog</name>
+    <message>
+        <location filename="../mmi/qmsc_about_dialog.cpp" line="18"/>
+        <source>Image not found</source>
+        <translation></translation>
+    </message>
+</context>
+<context>
     <name>qmsc::MscChild</name>
     <message>
         <location filename="../mmi/qmsc_child.cpp" line="202"/>
@@ -237,27 +253,27 @@ Do you want to save your changes?</source>
 <context>
     <name>qmsc::MscMainWindow</name>
     <message>
-        <location filename="../mmi/qmsc_main_window.cpp" line="43"/>
+        <location filename="../mmi/qmsc_main_window.cpp" line="44"/>
         <source>Ready</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../mmi/qmsc_main_window.cpp" line="102"/>
+        <location filename="../mmi/qmsc_main_window.cpp" line="103"/>
         <source>Ln %1, Col %2</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../mmi/qmsc_main_window.cpp" line="104"/>
+        <location filename="../mmi/qmsc_main_window.cpp" line="105"/>
         <source>, Pos %1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../mmi/qmsc_main_window.cpp" line="118"/>
+        <location filename="../mmi/qmsc_main_window.cpp" line="119"/>
         <source>OK</source>
         <translation></translation>
     </message>
     <message numerus="yes">
-        <location filename="../mmi/qmsc_main_window.cpp" line="121"/>
+        <location filename="../mmi/qmsc_main_window.cpp" line="122"/>
         <source>%n error(s)</source>
         <translation>
             <numerusform>%n error</numerusform>
@@ -265,17 +281,17 @@ Do you want to save your changes?</source>
         </translation>
     </message>
     <message>
-        <location filename="../mmi/qmsc_main_window.cpp" line="154"/>
+        <location filename="../mmi/qmsc_main_window.cpp" line="155"/>
         <source>Message Sequence Chart %1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../mmi/qmsc_main_window.cpp" line="160"/>
+        <location filename="../mmi/qmsc_main_window.cpp" line="161"/>
         <source>Open Flowchart</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../mmi/qmsc_main_window.cpp" line="162"/>
+        <location filename="../mmi/qmsc_main_window.cpp" line="163"/>
         <source>Flowchart Files %1</source>
         <translation></translation>
     </message>

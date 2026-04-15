@@ -26,7 +26,7 @@ qt_standard_project_setup()
 add_subdirectory(parser)
 add_subdirectory(mmi)
 
-qt_add_executable(qmsc
+qt_add_executable(qmsc WIN32
     main.cpp
 )
 
@@ -36,9 +36,11 @@ qt_add_translations(qmsc qmsc_mmi qmsc_parser
       i18n/qmsc_en_US.ts
 )
 
-target_link_libraries(qmsc PRIVATE
-    qmsc_mmi
-    qmsc_parser
+target_link_libraries(qmsc
+    PRIVATE
+        common_flags
+        qmsc_mmi
+        qmsc_parser
 )
 
 install(TARGETS qmsc
