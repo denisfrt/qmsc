@@ -26,7 +26,7 @@ jobs:
         include:
           - os: windows-latest
             qthost: 'windows'
-            qtarch: 'win64_mingw'
+            qtarch: 'win64_llvm_mingw'
             cmake_defs: '-DWIN32=ON'
             artifact: 'qmsc.windows.zip'
             appdir: 'qmsc'

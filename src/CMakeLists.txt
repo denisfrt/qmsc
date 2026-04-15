@@ -41,10 +41,6 @@ target_link_libraries(qmsc
         common_flags
         qmsc_mmi
         qmsc_parser
-    PUBLIC
-        Qt6::Core
-        Qt6::Widgets
-        Qt6::Gui
 )
 
 install(TARGETS qmsc
