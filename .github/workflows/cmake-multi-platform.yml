@@ -26,13 +26,15 @@ jobs:
         include:
           - os: windows-latest
             qthost: 'windows'
-            qtarch: 'win64_llvm_mingw'
+            qtarch: 'win64_mingw'
+            aqtTools: 'tools_mingw1310'
             cmake_defs: '-DWIN32=ON'
             artifact: 'qmsc.windows.zip'
             appdir: 'qmsc'
           - os: ubuntu-latest
             qthost: 'linux'
             qtarch: 'linux_gcc_64'
+            aqtTools: ''
             cmake_defs: ''
             artifact: 'qmsc.linux.AppImage'
             appdir: 'AppDir'
@@ -45,6 +47,7 @@ jobs:
         target: 'desktop'
         host: ${{ matrix.qthost }}
         arch: ${{ matrix.qtarch }}
+        tools: ${{ matrix.aqtTools }}
 
     - name: Checkout
       uses: actions/checkout@v6
