@@ -48,6 +48,7 @@ jobs:
         host: ${{ matrix.qthost }}
         arch: ${{ matrix.qtarch }}
         tools: ${{ matrix.aqtTools }}
+        add-tools-to-path: true
 
     - name: Checkout
       uses: actions/checkout@v6

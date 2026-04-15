@@ -87,7 +87,7 @@ void MscConfigDialog::accept()
 
 void MscConfigDialog::setButtonColor(QAbstractButton *button, const QColor &color)
 {
-    /* not working on win10 
+    /* not working on win10
     QPalette palette = button->palette();
     palette.setColor(QPalette::Button, color);
     button->setAutoFillBackground(true);
