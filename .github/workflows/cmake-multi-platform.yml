@@ -86,11 +86,8 @@ jobs:
       shell: pwsh
       if: matrix.os == 'windows-latest'
       run: |
-        echo %WIN_CERT_PFX%
-        echo %WIN_CERT_PFX% | out-file -encoding ascii cert.pfx.b64
+        echo "${{ secrets.WIN_CERT_PFX }}" | out-file -encoding ascii cert.pfx.b64
         certutil -decode cert.pfx.b64 cert.pfx
-      env:
-        WIN_CERT_PFX: ${{ secrets.WIN_CERT_PFX }}
 
     - name: Sign Executable (Windows)
       if: matrix.os == 'windows-latest'
