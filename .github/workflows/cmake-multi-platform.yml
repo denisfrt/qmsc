@@ -31,13 +31,6 @@ jobs:
             cmake_defs: '-DWIN32=ON'
             artifact: 'qmsc.windows.zip'
             appdir: 'qmsc'
-          - os: ubuntu-latest
-            qthost: 'linux'
-            qtarch: 'linux_gcc_64'
-            aqtTools: ''
-            cmake_defs: ''
-            artifact: 'qmsc.linux.AppImage'
-            appdir: 'AppDir'
 
     steps:
     - name: Install Qt
