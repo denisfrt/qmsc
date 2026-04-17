@@ -82,17 +82,35 @@ jobs:
         chmod +x ./appimagetool-x86_64.AppImage
         ARCH=x86_64 ./appimagetool-x86_64.AppImage ${{ steps.strings.outputs.install-app-dir }} ${{ steps.strings.outputs.install-output-dir }}/${{ matrix.artifact }}
 
+    - name: Create Code Signing Certificate (Windows)
+      shell: pwsh
+      if: matrix.os == 'windows-latest'
+      run: |
+        echo %WIN_CERT_PFX% | out-file -encoding ascii cert.pfx.b64
+        certutil -decode cert.pfx.b64 cert.pfx
+      env:
+        WIN_CERT_PFX: ${{ secrets.WIN_CERT_PFX }}
+
+    - name: Sign Executable (Windows)
+      if: matrix.os == 'windows-latest'
+      shell: cmd
+      run: >
+        "C:\Program Files (x86)\Windows Kits\10\bin\10.0.19041.0\x64\signtool.exe" sign
+        /f "cert.pfx"
+        /p "${{ secrets.WIN_CERT_PASSWORD }}"
+        /t http://timestamp.digicert.com
+        /fd sha256 /td sha256
+        /v "${{ steps.strings.outputs.install-app-dir }}\bin\qmsc.exe"
+
     - name: Package (Windows)
       if: matrix.os == 'windows-latest'
+      shell: cmd
       run: |
         echo %WIN_CERT_PFX% | out-file -encoding ascii cert.pfx.b64
         certutil -decode cert.pfx.b64 cert.pfx
         cd ${{ steps.strings.outputs.install-output-dir }}
         signtool.exe sign /f "cert.pfx" /p "${{ secrets.WIN_CERT_PASSWORD }}" /t http://timestamp.digicert.com /fd sha256 /td sha256 /v "${{ steps.strings.outputs.install-app-dir }}\bin\qmsc.exe"
         7z a -tzip ${{ matrix.artifact }} ${{ steps.strings.outputs.install-app-dir }}
-      shell: cmd
-      env:
-        WIN_CERT_PFX: ${{ secrets.WIN_CERT_PFX }}
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v7
