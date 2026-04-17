@@ -88,6 +88,8 @@ jobs:
       run: |
         echo "${{ secrets.WIN_CERT_PFX }}" | out-file -encoding ascii cert.pfx.b64
         certutil -decode cert.pfx.b64 cert.pfx
+        dir "C:\Program Files (x86)\Windows Kits\10\bin\"
+        dir "C:\Program Files (x86)\Windows Kits\10\bin\10.0.19041.0"
 
     - name: Sign Executable (Windows)
       if: matrix.os == 'windows-latest'
