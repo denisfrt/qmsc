@@ -88,18 +88,12 @@ jobs:
       run: |
         echo "${{ secrets.WIN_CERT_PFX }}" | out-file -encoding ascii cert.pfx.b64
         certutil -decode cert.pfx.b64 cert.pfx
-        dir "C:\Program Files (x86)\Windows Kits\10\bin\10.0.14393.0\x64"
-        dir "C:\Program Files (x86)\Windows Kits\10\bin\10.0.15063.0\x64"
-        dir "C:\Program Files (x86)\Windows Kits\10\bin\10.0.16299.0\x64"
-        dir "C:\Program Files (x86)\Windows Kits\10\bin\10.0.17134.0\x64"
-        dir "C:\Program Files (x86)\Windows Kits\10\bin\10.0.26100.0\x64"
-        dir "C:\Program Files (x86)\Windows Kits\10\bin\x64"
 
     - name: Sign Executable (Windows)
       if: matrix.os == 'windows-latest'
       shell: cmd
       run: >
-        "C:\Program Files (x86)\Windows Kits\10\bin\10.0.19041.0\x64\signtool.exe" sign
+        "C:\Program Files (x86)\Windows Kits\10\bin\10.0.26100.0\x64\signtool.exe" sign
         /f "cert.pfx"
         /p "${{ secrets.WIN_CERT_PASSWORD }}"
         /t http://timestamp.digicert.com
