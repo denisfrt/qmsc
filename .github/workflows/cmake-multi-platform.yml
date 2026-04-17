@@ -97,7 +97,7 @@ jobs:
         /f "cert.pfx"
         /p "${{ secrets.WIN_CERT_PASSWORD }}"
         /t http://timestamp.digicert.com
-        /fd sha256 /td sha256
+        /fd SHA256
         /v "${{ steps.strings.outputs.install-app-dir }}\bin\qmsc.exe"
 
     - name: Package (Windows)
