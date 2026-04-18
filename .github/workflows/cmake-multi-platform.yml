@@ -89,6 +89,16 @@ jobs:
         chmod +x ./appimagetool-x86_64.AppImage
         ARCH=x86_64 ./appimagetool-x86_64.AppImage ${{ steps.strings.outputs.install-app-dir }} ${{ steps.strings.outputs.install-output-dir }}/${{ matrix.artifact }}
 
+    - name: Create Executable Link (Windows)
+      shell: pwsh
+      if: matrix.os == 'windows-latest'
+      run: |
+        cd ${{ steps.strings.outputs.install-output-dir }}
+        $ws = New-Object -ComObject WScript.Shell
+        $shortcut = $ws.CreateShortcut("$PWD\qmsc.lnk")
+        $shortcut.TargetPath = ".\bin\qmsc.exe"
+        $shortcut.save()
+
     - name: Create Code Signing Certificate (Windows)
       shell: pwsh
       if: matrix.os == 'windows-latest'
