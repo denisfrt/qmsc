@@ -51,4 +51,6 @@ target_link_libraries(qmsc_mmi
         Qt6::Core
         Qt6::Widgets
 )
+if(NOT WIN32)
 install(FILES qmsc.desktop images/app.png DESTINATION .)
+endif()
